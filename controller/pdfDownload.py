@@ -7,16 +7,14 @@ import os
 pdf_download = Blueprint('pdf_download', __name__)
 
 
-
-
 @pdf_download.route('/upload-pdf', methods=['POST'])
 def upload_pdf() -> jsonify:
-    if 'pdf' not in request.files: # verification de recuperation de fichier non vide
+    if 'pdf' not in request.files:  # verification de recuperation de fichier non vide
         return jsonify({"error": "No fil part"}), 400
 
     file = request.files["pdf"]
 
-    if file.filename == '': # verification
+    if file.filename == '':  # verification
         return jsonify({"error": "No selected file"}), 400
 
     if file and file.filename.endswith('.pdf'):
