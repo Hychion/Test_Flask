@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Téléchargement PDF et Comptage de Mots</title>
+    </head>
+    <body>
+        <h2>Téléchargement de fichier PDF</h2>
+        <form action="/upload-pdf" method="post" enctype="multipart/form-data">
+            <label for="pdf">Choisir un fichier PDF :</label>
+            <input type="file" name="pdf" id="pdf" accept=".pdf">
+            <input type="submit" value="Uploader et Compter les Mots">
+        </form>
+    </body>
+</html>
