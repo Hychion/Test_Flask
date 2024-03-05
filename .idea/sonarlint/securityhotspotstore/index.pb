@@ -81,3 +81,13 @@ D
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+>
+models/user.py,0\6\06e12fe0f18bc3b1791185dff0cedb0370b2aa45
+C
+templates/base.html,d\a\da7c237b85a69c00a9ab8c189bf63e22070fcac3
+D
+templates/eleve.html,a\8\a8dc98f2cc6b3c817c043fa694366126945084aa
+E
+controllers/eleves.py,1\5\15af2250ca4df6553d94f87f152bacdcaa7657e6
+E
+templates/eleves.html,b\2\b2e33dd4dd45a5d584ce9483d4ae15ca267a92e4
