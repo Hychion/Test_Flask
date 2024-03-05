@@ -2,6 +2,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from extensions import db
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), nullable=False)
@@ -17,5 +18,4 @@ class User(db.Model):
         return "id : " + self.id + "; password " + self.password
 
     def get_username(self):
-        return self.filename
-
+        return self.username

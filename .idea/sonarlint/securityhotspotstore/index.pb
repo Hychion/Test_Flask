@@ -97,3 +97,13 @@ E
 templates/singup.html,c\b\cb0107e02e73cf8809873396e125095fdfeffd50
 =
 extensions.py,d\5\d5b12f6083635e76343cb496e65ded8372fc9e86
+N
+controllers/the_Good_number.py,2\c\2cce2421b60a1bf722f97f41e7539d335a06a3a0
+C
+templates/game.html,d\c\dc270abd5ce3d50e3ceb32adb5e10a684ad6755d
+>
+static/css/jeu,3\7\3708666cc627a104eb66e17a91617aa49b644299
+@
+static/css/style,7\1\71bf774bf4a1d6fdccb0773053ec03a1c8fe5b66
+D
+static/css/style.css,3\6\36e68d0961b94e1750624bc9e2f66c060d73b91b

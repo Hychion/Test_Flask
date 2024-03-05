@@ -1,4 +1,6 @@
 from flask import request, Response, Blueprint
+from extensions import db
+from models import didgit
 
 sum_way = Blueprint('somme_des_chiffres', __name__)
 

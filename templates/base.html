@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon appli</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block css %}{% endblock %}
 </head>
 <body>
     <nav id="navbar">
@@ -14,12 +15,20 @@
             <li class="navbar-item">
                 <a href="{{ url_for('index') }}">Accueil</a>
             </li>
+            <li class="navbar-item">
+                <a href="{{ url_for('the_good_page.jeu') }}">Nombre mystère</a>
+            </li>
+            <li class="navbar-item">
+                <a href="{{ url_for('pdf_download.upload_pdf') }}">How many word in my pdf</a>
+            </li>
+
+
             <li class="navbar-item login-logout">
-                  {% if session['nom_utilisateur'] %}
-                      <a href="{{ url_for('auth_bp.logout') }}">Se déconnecter</a>
-                  {% else %}
-                      <a href="{{ url_for('auth_bp.login') }}">Se connecter</a>
-                  {% endif %}
+                {% if session['user_id'] %}
+                    <a href="{{ url_for('auth_bp.logout') }}">Se déconnecter</a>
+                {% else %}
+                    <a href="{{ url_for('auth_bp.login') }}">Se connecter</a>
+                {% endif %}
             </li>
         </ul>
     </nav>

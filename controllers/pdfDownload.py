@@ -1,22 +1,27 @@
+import datetime
 import tempfile
 
-from flask import request, jsonify, Blueprint, render_template
+from flask import request, jsonify, Blueprint, render_template, session
 import fitz  # PyMuPDF
 import os
+
+from extensions import db
+from models.pdf_upload import PdfUpload
 
 pdf_download = Blueprint('pdf_download', __name__)
 
 
-@pdf_download.route('/upload-pdf', methods=['GET', 'POST'])
+@pdf_download.route('/upload_pdf', methods=['GET', 'POST'])
 def upload_pdf() -> jsonify:
     if request.method == 'POST':
+        print(session["user_id"])
         if 'pdf' not in request.files:  # verification de recuperation de fichier non vide
-            return jsonify({"error": "No fil part"}), 400
+            return render_template("UploadPdf.html", message="Pas de fichier selectionner")
 
         file = request.files["pdf"]
 
         if file.filename == '':  # verification
-            return jsonify({"error": "No selected file"}), 400
+            return render_template("UploadPdf.html", message="Fichier sans nom !!")
 
         if file and file.filename.endswith('.pdf'):
             filepath = os.path.join(tempfile.gettempdir(), file.filename)
@@ -26,10 +31,22 @@ def upload_pdf() -> jsonify:
             # Compter les mots
             word_count = count_word(text)
             # suppresion du fichier temporaire
+
+            session['words_pdf'] = word_count
+
+            new_pdf = PdfUpload(filename=file.filename,
+                                word_count=word_count,
+                                user_id=session['user_id']
+                                )
+
+
+            db.session.add(new_pdf)
+            db.session.commit()
             os.remove(filepath)
-            return jsonify({"word_count": word_count})
+
+            return render_template("UploadPdf.html", message="Ok")
         else:
-            return jsonify({"error": "Invalid file type"}), 400
+            return render_template("UploadPdf.html", message="Fichier du movais type")
     else:
         return render_template("UploadPdf.html")
 
