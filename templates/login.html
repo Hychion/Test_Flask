@@ -1,17 +1,10 @@
 
-    <form action="/auth/login" method="post">
-
-
-        <input type="submit" value="Se connecter">
-    </form>
-</body>
-
-
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>Page de connexion</h1>
-<form action="{{ url_for('traitement') }}" method="POST">
+<form action="/auth/login" method="POST">
     <p>
         <label for="username">username : </label>
         <input type="text" name="username" id="username" required>
@@ -24,4 +17,6 @@
         <input type="submit" value="Envoyer le formulaire">
     </p>
 </form>
+    <a href="{{ url_for('auth_bp.singup') }}"> S'inscrire </a>
+
 {% endblock %}

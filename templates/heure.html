@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>The first time in Flask</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     <h1> Quelle heure est-il ?</h1>
     <p> Il est {{ heure }}:{{ minute }}:{{ seconde }}</p>
-</body>
-</html>
+{% endblock %}

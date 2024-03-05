@@ -25,7 +25,7 @@ def create_app():
     app.register_blueprint(eleves)
 
     @app.route('/')
-    def hello_world():
+    def index():
         # print('Chemin absolu vers templates:', os.path.abspath('templates'))
         # print('Chemin de template_folder:', app.template_folder)
         # print('Chemin de recherche de templates:', app.jinja_loader.searchpath)

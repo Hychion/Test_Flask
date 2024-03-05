@@ -91,3 +91,7 @@ E
 controllers/eleves.py,1\5\15af2250ca4df6553d94f87f152bacdcaa7657e6
 E
 templates/eleves.html,b\2\b2e33dd4dd45a5d584ce9483d4ae15ca267a92e4
+R
+"templates/auth/authentication.html,4\b\4bf6d2e85385702ca0643859dba280cd4beac5d0
+E
+templates/singup.html,c\b\cb0107e02e73cf8809873396e125095fdfeffd50

@@ -7,7 +7,7 @@ from models.user import User
 auth_bp = Blueprint('auth_bp', __name__)
 
 
-@auth_bp.route('/signup', methods=['GET', 'POST'])
+@auth_bp.route('/singup', methods=['GET', 'POST'])
 def singup():
     if request.method == 'POST':
         data = request.get_json()
@@ -24,7 +24,7 @@ def singup():
         db.session.commit()
 
         return jsonify({"message": "Inscription réussie."}), 201
-    return render_template("signup.html")
+    return render_template("singup.html")
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
