@@ -10,27 +10,29 @@ auth_bp = Blueprint('auth_bp', __name__)
 @auth_bp.route('/singup', methods=['GET', 'POST'])
 def singup():
     if request.method == 'POST':
-        data = request.get_json()
-        username = data.get('username')
-        password = data.get('password')
-
-        user = User.query.filter_by(username=username).first()
-        if user:
+        data = request.form
+        print(data)
+        new_username = data.get('username')
+        new_password = data.get('password')
+        print("new_password"+new_password)
+        if User.query.filter_by(username=new_username).first():
             return jsonify({'message': "Ce nom d'utilisateur est déjà pris"}), 400
 
-        new_user = User(username=username, password=generate_password_hash(password, method='sha256'))
-
+        new_user = User(username=new_username)
+        new_user.set_password(new_password)
         db.session.add(new_user)
         db.session.commit()
 
-        return jsonify({"message": "Inscription réussie."}), 201
+        return render_template("index.html")
     return render_template("singup.html")
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        data = request.get_json()
+        data = request.form
+        print(data)
+
         username = data.get('username')
         password = data.get('password')
 

@@ -95,3 +95,5 @@ R
 "templates/auth/authentication.html,4\b\4bf6d2e85385702ca0643859dba280cd4beac5d0
 E
 templates/singup.html,c\b\cb0107e02e73cf8809873396e125095fdfeffd50
+=
+extensions.py,d\5\d5b12f6083635e76343cb496e65ded8372fc9e86
