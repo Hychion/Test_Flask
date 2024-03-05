@@ -1,37 +1,36 @@
+import os
+
 from flask import Flask, render_template
-import datetime
 from flask_sqlalchemy import SQLAlchemy
-
 from config import Config
-from controller.pdfDownload import pdf_download
-from controller.somme_des_chiffres import sum_way
 
-app = Flask(__name__)
+from controllers.heure import h_m_s
+from controllers.pdfDownload import pdf_download
+from controllers.signup_login import auth_bp
+from controllers.somme_des_chiffres import sum_way
 
-app.register_blueprint(sum_way)
-app.register_blueprint(pdf_download)
-
-app.config.from_object(Config)
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return render_template("index.html")
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    db.init_app(app)
 
+    app.register_blueprint(sum_way)
+    app.register_blueprint(pdf_download, url_prefix='/pdf')
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(h_m_s)
 
-@app.route('/heure')
-def heure():
-    date_local = datetime.datetime.now()
-    h = date_local.hour
-    m = date_local.minute
-    s = date_local.second
-    return render_template("heure.html", heure=h, minute=m, seconde=s)
+    @app.route('/')
+    def hello_world():
+        print('Chemin absolu vers templates:', os.path.abspath('templates'))
+        print('Chemin de template_folder:', app.template_folder)
+        print('Chemin de recherche de templates:', app.jinja_loader.searchpath)
+        return render_template("index.html")
 
-@app.route('/pdf')
-def to_uploadpdf():
-    return render_template("UploadPdf.html")
+    return app
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    create_app().run(debug=True)
