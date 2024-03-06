@@ -2,6 +2,9 @@ from random import randint
 
 from flask import request, session, render_template, Blueprint
 
+from extensions import db
+from models.game_score import Score_Game
+
 # Création d'un blueprint 'the_good_page' pour le jeu
 game = Blueprint("the_good_page", __name__)
 
@@ -21,6 +24,9 @@ def jeu():
         if reponse == session['nb']:
             session['en_cours'] = False
             message = "Bravo, c'est gagné !"
+            #  Ajout des résultats en Bdd
+            add_Score()
+
         elif reponse < session['nb']:
             message = "Non, c'est plus !"
         else:
@@ -33,6 +39,9 @@ def jeu():
         if session['nb_essais'] == 0:
             session['en_cours'] = False
             message = "C'est perdu !"
+            #  Ajout des résultats en Bdd
+            add_Score()
+
         print(session)
 
         # Retour du template du jeu avec un message (résultat de la tentative)
@@ -49,3 +58,19 @@ def jeu():
 
         # Affichage du formulaire de jeu au début
         return render_template('game.html')
+
+
+def add_Score():
+    status = ""
+    if 10 - session['nb_essais'] == 0 :
+        status = "Loose"
+    else :
+        status = "Win"
+
+    score = Score_Game(
+        user_id=session['user_id'],
+        nb_essais=10 - session['nb_essais'],
+        etat=status
+    )
+    db.session.add(score)
+    db.session.commit()

@@ -13,8 +13,8 @@ stat_graph = Blueprint("statistiques", __name__)
 
 @stat_graph.route('/statistiques')
 def statistiques():
-    """
-    top_users = db.session.query(User.name, func.count(Request.id).label('pdf_upload')) \
+
+    top_users = db.session.query(User.id, func.count(Request.id).label('didgit')) \
         .join(Request, User.id == Request.user_id) \
         .group_by(User.name) \
         .order_by(desc('total_requests')) \
@@ -22,7 +22,7 @@ def statistiques():
 
     plot_div = create_plot(top_users)
     return render_template("statistiques.html", plot_div=plot_div)
-    """
+
     return render_template('heure.html')
 
 

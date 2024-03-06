@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Dans l'url ajouter ?number=123</h2>
+
+
+    {% if numbregiven < 0 %}
+        <p>Aucun nombre donné.</p>
+    {% else %}
+        <ul>
+            <p>Voici le nombre donné : {{ nombregiven }}</p>
+            <p>Resultat : {{ resulat }}</p>
+        </ul>
+    {% endif %}
+{% endblock %}

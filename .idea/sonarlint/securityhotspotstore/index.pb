@@ -113,3 +113,7 @@ J
 templates/statistique.html,1\5\15f80ffb8e4ba143777c6af8ed927ddad2402db1
 H
 static/Js/msg_co_deco.js,e\d\edb45bb4d8cb1b0df8afc99e00bdd07f49aa5f9a
+D
+models/game_score.py,e\7\e7d4d7c55982bc16885b1b016566f5290c207e07
+E
+templates/didgit.html,8\1\8137cf2d077b023e160d346bc495a4b1da7fac42
