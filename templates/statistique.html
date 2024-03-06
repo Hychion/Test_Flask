@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    {{ graph_html|safe }}
-</div>
+    <h2>Manipulation du Graphique</h2>
+
+    <!-- Checkboxes pour sélectionner les données à afficher -->
+    <!-- <div>
+      <input type="checkbox" id="option1" name="option1" value="Option1" checked>
+      <label for="option1"> Option 1</label><br>
+      <input type="checkbox" id="option2" name="option2" value="Option2">
+      <label for="option2"> Option 2</label><br>
+    </div>-->
+
+   <!-- <div id="graph"></div>-->
+    <div>
+        {{ graph_html|safe }}
+    </div>
+    <!-- Script pour manipuler le graphique -->
+    <!--<script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+
 {% endblock %}
