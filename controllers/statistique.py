@@ -1,43 +1,41 @@
+from flask import Blueprint, render_template
+
+from extensions import db
+from sqlalchemy.sql import func
 import plotly.graph_objs as go
 import plotly.offline as pyo
 
-from flask import Blueprint, render_template, Request
-from sqlalchemy import func, desc
+from models.game_score import Score_Game
 
-from extensions import db
-from models.user import User
+stat = Blueprint("statistiques", __name__)
 
 
-stat_graph = Blueprint("statistiques", __name__)
+@stat.route('/top-users')
+def top_users_view():
+    top_users = get_top_users_by_requests()
+    fig = create_top_users_graph(top_users)
+    graph_html = pyo.plot(fig, include_plotlyjs=True, output_type='div')
+    return render_template('statistique.html', graph_html=graph_html)
 
 
-@stat_graph.route('/statistiques')
-def statistiques():
-    """
-    top_users = db.session.query(User.name, func.count(Request.id).label('pdf_upload')) \
-        .join(Request, User.id == Request.user_id) \
-        .group_by(User.name) \
-        .order_by(desc('total_requests')) \
-        .limit(5).all()
+def get_top_users_by_requests():
+    result = db.session.query(
+        Score_Game.user_id, func.count(Score_Game.id).label('total_requests')
+    ).group_by(
+        Score_Game.user_id
+    ).order_by(
+        func.count(Score_Game.id).desc()
+    ).limit(5).all()
 
-    plot_div = create_plot(top_users)
-    return render_template("statistiques.html", plot_div=plot_div)
-    """
-    return render_template('heure.html')
+    return result
 
 
-def create_plot(top_users):
-    data = [
-        go.Bar(
-            x=[user.name for user in top_users],  # Noms des utilisateurs
-            y=[user.total_requests for user in top_users]  # Total des demandes
-        )
-    ]
+def create_top_users_graph(top_users):
+    user_ids = [str(user.user_id) for user in top_users]
+    requests_counts = [user.total_requests for user in top_users]
 
-    layout = go.layout(title="top 5 des utilisateurs ayant fait le plus de demandes ",
-                       x=dict(title="Utilisateurs"),
-                       y=dict(titel="Nombre de demande")
-                    )
-    figure = go.Figure(data=data, layout=layout)
+    data = [go.Bar(x=user_ids, y=requests_counts)]
+    layout = go.Layout(title='Top 5 utilisateurs par nombre de demandes')
 
-    return pyo.plot(figure, output_type="div", include_plotyjs=False)
+    fig = go.Figure(data=data, layout=layout)
+    return fig

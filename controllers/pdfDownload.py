@@ -1,7 +1,7 @@
 import datetime
 import tempfile
 
-from flask import request, jsonify, Blueprint, render_template, session
+from flask import request, jsonify, Blueprint, render_template, session, redirect, url_for
 import fitz  # PyMuPDF
 import os
 
@@ -14,6 +14,8 @@ pdf_download = Blueprint('pdf_download', __name__)
 
 @pdf_download.route('/upload_pdf', methods=['GET', 'POST'])
 def upload_pdf() -> jsonify:
+    if session.get("user_id") is None:
+        return redirect(url_for('auth_bp.login'))
     if request.method == 'POST':  # Vérification de la présence du fichier dans la requête
         print(session["user_id"])
         if 'pdf' not in request.files:  # verification de recuperation de fichier non vide

@@ -1,6 +1,9 @@
 from random import randint
 
-from flask import request, session, render_template, Blueprint
+from flask import request, session, render_template, Blueprint, url_for, redirect
+
+from extensions import db
+from models.game_score import Score_Game
 
 # Création d'un blueprint 'the_good_page' pour le jeu
 game = Blueprint("the_good_page", __name__)
@@ -9,6 +12,9 @@ game = Blueprint("the_good_page", __name__)
 # Route '/jeu' accessible en GET pour commencer le jeu et en POST pour soumettre une réponse
 @game.route('/jeu', methods=["GET", "POST"])
 def jeu():
+
+    if session.get("user_id") is None:
+        return redirect(url_for('auth_bp.login'))
     # Traitement des soumissions de l'utilisateur
     if request.method == "POST":
 
@@ -21,6 +27,9 @@ def jeu():
         if reponse == session['nb']:
             session['en_cours'] = False
             message = "Bravo, c'est gagné !"
+            #  Ajout des résultats en Bdd
+            add_Score()
+
         elif reponse < session['nb']:
             message = "Non, c'est plus !"
         else:
@@ -33,6 +42,9 @@ def jeu():
         if session['nb_essais'] == 0:
             session['en_cours'] = False
             message = "C'est perdu !"
+            #  Ajout des résultats en Bdd
+            add_Score()
+
         print(session)
 
         # Retour du template du jeu avec un message (résultat de la tentative)
@@ -49,3 +61,19 @@ def jeu():
 
         # Affichage du formulaire de jeu au début
         return render_template('game.html')
+
+
+def add_Score():
+
+    if 10 - session['nb_essais'] == 0:
+        status = "Loose"
+    else:
+        status = "Win"
+
+    score = Score_Game(
+        user_id=session['user_id'],
+        nb_essais=10 - session['nb_essais'],
+        etat=status
+    )
+    db.session.add(score)
+    db.session.commit()
