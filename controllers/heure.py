@@ -4,6 +4,7 @@ from flask import render_template, Blueprint
 
 h_m_s = Blueprint("heure", __name__)
 
+
 @h_m_s.route('/heure')
 def heure():
     date_local = datetime.now()

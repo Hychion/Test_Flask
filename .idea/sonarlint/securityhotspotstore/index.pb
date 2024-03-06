@@ -111,3 +111,5 @@ J
 controllers/statistique.py,d\c\dceb59cbbb03c111e744635ab8438247ebb95cec
 J
 templates/statistique.html,1\5\15f80ffb8e4ba143777c6af8ed927ddad2402db1
+H
+static/Js/msg_co_deco.js,e\d\edb45bb4d8cb1b0df8afc99e00bdd07f49aa5f9a

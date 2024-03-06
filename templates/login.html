@@ -15,7 +15,12 @@
     <p>
         <input type="submit" value="Envoyer le formulaire">
     </p>
+    {% if message %}
+        <p style="color: red">{{ message }}</p>
+    {% endif %}
 </form>
+
+
     <a href="{{ url_for('auth_bp.singup') }}"> S'inscrire </a>
 
 {% endblock %}

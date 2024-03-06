@@ -34,10 +34,10 @@ def create_plot(top_users):
         )
     ]
 
-    layout = go.layout(title= "top 5 des utilisateurs ayant fait le plus de demandes ",
-                       x = dict(title= "Utilisateurs"),
-                       y = dict(titel= "Nombre de demande")
+    layout = go.layout(title="top 5 des utilisateurs ayant fait le plus de demandes ",
+                       x=dict(title="Utilisateurs"),
+                       y=dict(titel="Nombre de demande")
                     )
-    figure= go.Figure(data=data, layout=layout)
+    figure = go.Figure(data=data, layout=layout)
 
     return pyo.plot(figure, output_type="div", include_plotyjs=False)

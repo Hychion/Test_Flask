@@ -19,3 +19,6 @@ class User(db.Model):
 
     def get_username(self):
         return self.username
+
+    def get_id(self):
+        return self.id
