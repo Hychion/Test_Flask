@@ -1,5 +1,7 @@
+
 from flask import Flask, render_template
 from config import Config
+from controllers.statistique import stat_graph
 from controllers.the_Good_number import game
 from extensions import db
 
@@ -21,6 +23,7 @@ def create_app():
     app.register_blueprint(h_m_s)
     app.register_blueprint(eleves)
     app.register_blueprint(game)
+    app.register_blueprint(stat_graph)
 
     with app.app_context():
         db.create_all()

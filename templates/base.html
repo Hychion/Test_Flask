@@ -22,6 +22,11 @@
                 <a href="{{ url_for('pdf_download.upload_pdf') }}">How many word in my pdf</a>
             </li>
 
+            </li>
+                <li class="navbar-item">
+                    <a href="{{ url_for('statistiques.statistiques') }}">Statistiques</a>
+            </li>
+
 
             <li class="navbar-item login-logout">
                 {% if session['user_id'] %}

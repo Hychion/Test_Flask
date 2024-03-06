@@ -107,3 +107,7 @@ C
 static/css/style,7\1\71bf774bf4a1d6fdccb0773053ec03a1c8fe5b66
 D
 static/css/style.css,3\6\36e68d0961b94e1750624bc9e2f66c060d73b91b
+J
+controllers/statistique.py,d\c\dceb59cbbb03c111e744635ab8438247ebb95cec
+J
+templates/statistique.html,1\5\15f80ffb8e4ba143777c6af8ed927ddad2402db1
