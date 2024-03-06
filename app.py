@@ -10,7 +10,7 @@ from controllers.heure import h_m_s
 from controllers.pdfDownload import pdf_download
 from controllers.signup_login import auth_bp
 from controllers.somme_des_chiffres import sum_way
-from controllers.statistique import stat_graph
+from controllers.statistique import stat
 from controllers.the_Good_number import game
 
 
@@ -29,7 +29,7 @@ def create_app():
     app.register_blueprint(h_m_s)
     app.register_blueprint(eleves)
     app.register_blueprint(game)
-    app.register_blueprint(stat_graph)
+    app.register_blueprint(stat)
 
     # Création de toutes les tables de base de données nécessaires
     # à l'intérieur du contexte de l'application Flask

@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<head>
-    <title>Statistiques</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <h1>Statistiques des Utilisateurs</h1>
-    <div>{{ plot_div|safe }}</div>
-</body>
-
+<div>
+    {{ graph_html|safe }}
+</div>
 {% endblock %}
