@@ -61,10 +61,10 @@ def jeu():
 
 
 def add_Score():
-    status = ""
-    if 10 - session['nb_essais'] == 0 :
+
+    if 10 - session['nb_essais'] == 0:
         status = "Loose"
-    else :
+    else:
         status = "Win"
 
     score = Score_Game(

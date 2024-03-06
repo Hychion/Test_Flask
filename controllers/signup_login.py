@@ -9,6 +9,9 @@ auth_bp = Blueprint('auth_bp', __name__)
 
 @auth_bp.route('/singup', methods=['GET', 'POST'])
 def singup():
+    if session['user_id'] is not None:
+        return render_template("index.html")
+
     if request.method == 'POST':
         data = request.form
         print(data)

@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Dans l'url ajouter ?number=123</h2>
+    <h2>Dans l'url ajouter "?number=123"</h2>
 
-
-    {% if numbregiven < 0 %}
-        <p>Aucun nombre donné.</p>
-    {% else %}
-        <ul>
-            <p>Voici le nombre donné : {{ nombregiven }}</p>
-            <p>Resultat : {{ resulat }}</p>
-        </ul>
-    {% endif %}
+        {% if number > 0 %}
+            <p>Voici le nombre donné : {{ number }}</p>
+            <p>Resultat : {{ resultat }}</p>
+            <p>À toi de trouver ce qu'on a fait avec ton nombre =).</p>
+        {% else %}
+            <p>Aucun nombre valide donné.</p>
+        {% endif %}
 {% endblock %}

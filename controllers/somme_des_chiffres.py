@@ -1,4 +1,4 @@
-from flask import request, Response, Blueprint, session, render_template, url_for
+from flask import request, Blueprint, session, render_template, url_for, redirect
 from extensions import db
 from models.didgit import Didgit
 
@@ -25,30 +25,19 @@ def dict_to_xml(tag, d):
 # Cas d'utilisation : http://localhost:5000/sum_didgit?number=123
 @sum_way.route('/sum_didgit')
 def request_sum_of_didgit():
-
-    # Récupération du paramètre 'number' depuis la requête, avec 0 comme valeur par défaut
     number = request.args.get('number', default=0, type=int)
 
-    if number < 0: # Vérification si le nombre est négatif
-        # Préparation de la réponse XML en cas d'erreur
-        return render_template("didgit.html",numbergiven=0,resultat=0)
+    if session.get("user_id") is None:
+        return redirect(url_for('login'))  # Assurez-vous d'importer `redirect`
     else:
-        if session["user_id"] is None:
-            return render_template(url_for('login'))
-        else:
-            print(session["user_id"])
-            # Calcul de la somme des chiffres pour un nombre positif
-            result = sum_didgit(number)
+        print(session["user_id"])
+        resultat = sum_didgit(number) if number > 0 else 0
 
-            # Creation d'une instance Difgit pour la mise en bdd
+        if number > 0:
             new_number = Didgit(number_brut=number,
-                                valeur=result,
-                                user_id=6)
-
+                                valeur=resultat,
+                                user_id=session['user_id'])
             db.session.add(new_number)
             db.session.commit()
 
-            # Préparation de la réponse XML avec le résultat
-            return render_template("didgit.html", numbergiven=number, resultat=result)
-
-        return render_template('didgit.html')
+        return render_template("didgit.html", number=number, resultat=resultat)
