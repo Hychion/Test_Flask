@@ -28,7 +28,7 @@ def request_sum_of_didgit():
     number = request.args.get('number', default=0, type=int)
 
     if session.get("user_id") is None:
-        return redirect(url_for('login'))  # Assurez-vous d'importer `redirect`
+        return redirect(url_for('auth_bp.login'))  # Assurez-vous d'importer `redirect`
     else:
         print(session["user_id"])
         resultat = sum_didgit(number) if number > 0 else 0

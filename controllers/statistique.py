@@ -1,7 +1,7 @@
 import plotly.graph_objs as go
 import plotly.offline as pyo
 
-from flask import Blueprint, render_template, Request
+from flask import Blueprint, render_template, Request, session, redirect, url_for
 from sqlalchemy import func, desc
 
 from extensions import db
@@ -13,6 +13,8 @@ stat_graph = Blueprint("statistiques", __name__)
 
 @stat_graph.route('/statistiques')
 def statistiques():
+    if session.get("user_id") is None:
+        return redirect(url_for('auth_bp.login'))
 
     top_users = db.session.query(User.id, func.count(Request.id).label('didgit')) \
         .join(Request, User.id == Request.user_id) \

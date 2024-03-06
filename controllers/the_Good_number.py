@@ -1,6 +1,6 @@
 from random import randint
 
-from flask import request, session, render_template, Blueprint
+from flask import request, session, render_template, Blueprint, url_for, redirect
 
 from extensions import db
 from models.game_score import Score_Game
@@ -12,6 +12,9 @@ game = Blueprint("the_good_page", __name__)
 # Route '/jeu' accessible en GET pour commencer le jeu et en POST pour soumettre une réponse
 @game.route('/jeu', methods=["GET", "POST"])
 def jeu():
+
+    if session.get("user_id") is None:
+        return redirect(url_for('auth_bp.login'))
     # Traitement des soumissions de l'utilisateur
     if request.method == "POST":
 
