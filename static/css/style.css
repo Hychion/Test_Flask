@@ -1,5 +1,5 @@
 .nav-link.active{
-  color:blue;
+  color:#007bff;
   background-color:#fff;
   border-color:#dee2e6 #dee2e6 #fff}
 
@@ -7,3 +7,12 @@
   color:#495057;
   background-color:#fff;
   border-color:#dee2e6 #dee2e6 #fff}
+
+.navbar .nav-item .nav-link{
+    color:#495057;
+    background-color: #343a40;
+}
+
+.navbar .nav-item .nav-link:hover{
+    color:#fff;
+}
