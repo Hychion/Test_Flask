@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://OdooSupAdmin:10012001_@db:5432/OdooDev'
+    networks:
+      appnetworks:
+
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=10012001_
+      - POSTGRES_USER=OdooSupAdmin
+      - POSTGRES_DB=OdooDev
+    networks:
+      appnetworks:
+
+volumes:
+  postgres_data:
+
+networks:
+  appnetworks:

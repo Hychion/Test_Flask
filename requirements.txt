@@ -1,0 +1,8 @@
+Flask
+SQLAlchemy
+flask_sqlalchemy
+fitz
+tools
+frontend
+psycopg2-binary
+plotly

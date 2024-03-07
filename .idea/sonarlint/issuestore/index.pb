@@ -135,3 +135,14 @@ J
 static/Js/app.js,b\4\b48c5a258f1c326af668bca9acbc55ed7c56af7c
 L
 static/css/bootstrap.min.css,6\0\60d2b7dcd8c182d9d4c4936d505a55421b522dfe
+E
+templates/navbar.html,2\1\2152ecc432cb8e2a5acad94785c9a8c5a8df8cac
+:
+
+Dockerfile,6\6\6651ddff6eb82c840ced7c1dddee15c6e1913dd4
+B
+docker-compose.yml,3\5\35b8c13cf2eb2a194eada000eb310d65aed53b2a
+@
+requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
+=
+.dockerignore,0\5\05a721ebe3ba0754116825ed1359ff1785f4bbac
