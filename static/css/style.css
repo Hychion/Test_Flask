@@ -16,3 +16,6 @@
 .navbar .nav-item .nav-link:hover{
     color:#fff;
 }
+.centre_auto{
+    margin: auto;
+}

@@ -1,12 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Inscription</h2>
-    <form action="/auth/singup" method="post">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="submit" value="S'inscrire">
+    <h1 class="h2">Inscription</h1>
+    <form class="form-signin text-center" action="/auth/singup" method="post">
+        <div >
+            <div class="col-md-6 mb-3 centre_auto">
+                <label class="sr-only" for="username">Nom d'utilisateur :</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 centre_auto">
+                <label class="sr-only" for="password">Mot de passe:</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Password" required="">
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="col-md-6 mb-3 centre_auto">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="S'inscrire">
+            </div>
+        </div>
     </form>
      {% if message %}
         <p style="color: red">{{ message }}</p>

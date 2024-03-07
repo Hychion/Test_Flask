@@ -3,21 +3,32 @@
 
 {% block content %}
 <h1>Page de connexion</h1>
-<form action="/auth/login" method="POST">
-    <p>
-        <label for="username">username : </label>
-        <input type="text" name="username" id="username" required>
-    </p>
-    <p>
-        <label for="password">Mot de passe : </label>
-        <input type="password" name="password" id="password" required>
-    </p>
-    <p>
-        <input type="submit" value="Envoyer le formulaire">
-    </p>
+<form class="form-signin" action="/auth/login" method="POST">
+
+    <div>
+            <div class="col-md-6 mb-3 centre_auto">
+                <label class="sr-only" for="username">Username : </label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 centre_auto">
+                <label class="sr-only" for="password">Password : </label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+                <hr class="mb-4">
+            </div>
+            <div class="col-md-6 mb-3 centre_auto">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Se connecter">
+            </div>
+
     {% if message %}
         <p style="color: red">{{ message }}</p>
     {% endif %}
+    </div>
 </form>
 
 

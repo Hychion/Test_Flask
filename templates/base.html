@@ -20,11 +20,17 @@
       </ul>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="{{ url_for('auth_bp.logout') }}">Sign out</a>
+             <a class="nav-link"
+             {% if session['user_id'] %}
+                href="{{ url_for('auth_bp.logout') }}">Sign out
+            {% else %}
+                href="{{ url_for('auth_bp.login') }}">Connect
+             {% endif %}
+             </a>
         </li>
       </ul>
-    </nav>
 
+    </nav>
 
     <div class="container-fluid">
       <div class="row">
