@@ -15,7 +15,7 @@ def top_users_view():
     top_users = get_top_users_by_requests()
     fig = create_top_users_graph(top_users)
     graph_html = pyo.plot(fig, include_plotlyjs=True, output_type='div')
-    return render_template('endpoint_local/statistique.html', graph_html=graph_html)
+    return render_template('statistique.html', graph_html=graph_html)
 
 
 def get_top_users_by_requests():

@@ -28,4 +28,4 @@ def get_eleves():
         eleves_selectionnes = []
 
     # Rendu du template 'eleves.html' en passant la liste filtrée des élèves
-    return render_template("endpoint_local/eleves.html", eleves=eleves_selectionnes)
+    return render_template("eleves.html", eleves=eleves_selectionnes)

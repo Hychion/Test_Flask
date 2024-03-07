@@ -48,7 +48,7 @@ def jeu():
         print(session)
 
         # Retour du template du jeu avec un message (résultat de la tentative)
-        return render_template('endpoint_local/game.html', message=message)
+        return render_template('game.html', message=message)
 
     else:  # Initialisation du jeu pour une requête GET
         nb_mystere = randint(0, 100)  # Génération d'un nombre aléatoire entre 0 et 100
@@ -60,7 +60,7 @@ def jeu():
         print(session)
 
         # Affichage du formulaire de jeu au début
-        return render_template('endpoint_local/game.html')
+        return render_template('game.html')
 
 
 def add_Score():

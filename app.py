@@ -39,7 +39,7 @@ def create_app():
     # Définition de la route principale de l'application qui affiche la page d'accueil
     @app.route('/')
     def index():
-        return render_template("endpoint_local/index.html")
+        return render_template("index.html")
 
     return app
 
