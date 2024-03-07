@@ -7,9 +7,16 @@
     <body>
         <h2>Téléchargement de fichier PDF</h2>
         <form action="/upload_pdf" method="post" enctype="multipart/form-data">
-            <label for="pdf">Choisir un fichier PDF :</label>
-            <input type="file" name="pdf" id="pdf" accept=".pdf">
-            <input type="submit" value="Uploader et Compter les Mots">
+            <div class="col-md-6 mb-3 centre_auto">
+                <label class="sr-only" for="pdf" >Choisir un fichier Pdf :</label>
+                <input type="file"  class="form-control " name="pdf" id="pdf" accept=".pdf">
+            </div>
+
+            <hr class="mb-4">
+            </div>
+            <div class="col-md-6 mb-3 centre_auto">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Uploader et Compter les Mots">
+            </div>
         </form>
         {% if message == "Ok" %}
             <p>Voici le nombre de mots dans ton pdf : {{ session['words_pdf'] }}</p>
