@@ -11,4 +11,4 @@ def heure():
     h = date_local.hour
     m = date_local.minute
     s = date_local.second
-    return render_template("heure.html", heure=h, minute=m, seconde=s)
+    return render_template("endpoint_local/heure.html", heure=h, minute=m, seconde=s)

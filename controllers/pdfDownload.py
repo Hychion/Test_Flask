@@ -19,12 +19,12 @@ def upload_pdf() -> jsonify:
     if request.method == 'POST':  # Vérification de la présence du fichier dans la requête
         print(session["user_id"])
         if 'pdf' not in request.files:  # verification de recuperation de fichier non vide
-            return render_template("UploadPdf.html", message="Pas de fichier selectionner")
+            return render_template("endpoint_local/UploadPdf.html", message="Pas de fichier selectionner")
 
         file = request.files["pdf"]
 
         if file.filename == '':  # Vérification que le fichier a un nom
-            return render_template("UploadPdf.html", message="Fichier sans nom !!")
+            return render_template("endpoint_local/UploadPdf.html", message="Fichier sans nom !!")
 
         if file and file.filename.endswith('.pdf'):  # Vérification de l'extension du fichier
 
@@ -48,11 +48,11 @@ def upload_pdf() -> jsonify:
             db.session.commit()  # Enregistrement des modifications
             os.remove(filepath)  # suppresion du pdf
 
-            return render_template("UploadPdf.html", message="Ok")
+            return render_template("endpoint_local/UploadPdf.html", message="Ok")
         else:
-            return render_template("UploadPdf.html", message="Fichier du movais type")
+            return render_template("endpoint_local/UploadPdf.html", message="Fichier du movais type")
     else:
-        return render_template("UploadPdf.html")
+        return render_template("endpoint_local/UploadPdf.html")
 
 
 def extract_text_from_pdf(filepath: str) -> str:

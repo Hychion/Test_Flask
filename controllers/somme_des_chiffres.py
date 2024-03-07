@@ -25,6 +25,7 @@ def dict_to_xml(tag, d):
 # Cas d'utilisation : http://localhost:5000/sum_didgit?number=123
 @sum_way.route('/sum_didgit')
 def request_sum_of_didgit():
+    print(request)
     number = request.args.get('number', default=0, type=int)
 
     if session.get("user_id") is None:
@@ -40,4 +41,4 @@ def request_sum_of_didgit():
             db.session.add(new_number)
             db.session.commit()
 
-        return render_template("didgit.html", number=number, resultat=resultat)
+    return render_template("endpoint_local/didgit.html", number=number, resultat=resultat)

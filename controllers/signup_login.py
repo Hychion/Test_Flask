@@ -7,8 +7,8 @@ from models.user import User
 auth_bp = Blueprint('auth_bp', __name__)
 
 
-@auth_bp.route('/singup', methods=['GET', 'POST'])
-def singup():
+@auth_bp.route('/signup', methods=['GET', 'POST'])
+def signup():
 
     if request.method == 'POST':
         data = request.form
@@ -18,7 +18,7 @@ def singup():
         print("new_password"+new_password)
 
         if User.query.filter_by(username=new_username).first():
-            return render_template("index.html", message="Ce nom d'utilisateur est déjà pris")
+            return render_template("endpoint_local/index.html", message="Ce nom d'utilisateur est déjà pris")
 
         new_user = User(username=new_username)
         new_user.set_password(new_password)
@@ -28,8 +28,8 @@ def singup():
         db.session.add(new_user)
         db.session.commit()
 
-        return render_template("index.html")
-    return render_template("singup.html")
+        return render_template("endpoint_local/index.html")
+    return render_template("endpoint_local/signup.html")
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -45,12 +45,12 @@ def login():
         # Vérifier si l'utilisateur existe
         user = User.query.filter_by(username=username).first()
         if not user or not check_password_hash(user.password, password):
-            return render_template("login.html", message="Identifiants incorrect")
+            return render_template("endpoint_local/login.html", message="Identifiants incorrect")
 
         # Si la vérification est réussie, stocker l'id de l'utilisateur dans la session
         session['user_id'] = user.get_id()
-        return render_template("index.html")
-    return render_template("login.html")
+        return render_template("endpoint_local/index.html")
+    return render_template("endpoint_local/login.html")
 
 
 @auth_bp.route('/logout')
