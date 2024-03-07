@@ -1,55 +1,9 @@
-body {
-    background-color:aliceblue;
-    margin: 0;
-}
+.nav-link.active{
+  color:blue;
+  background-color:#fff;
+  border-color:#dee2e6 #dee2e6 #fff}
 
-#navbar {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    background-color: lightskyblue;
-    font-size: 1.1em;
-    color: #333;
-}
-
-#navbar-items {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100%;
-}
-
-.navbar-item {
-    margin: 0 10px;
-}
-
-.navbar-item.login-logout {
-    margin-left: auto;
-}
-
-.navbar-item a {
-    text-decoration: none;
-    display: block;
-    color: #333;
-    font-weight: bold;
-}
-
-.navbar-item a:hover {
-    color: #fcfcfc;
-}
-
-#container {
-    margin: 20px 50px;
-}
-
-#popup-container {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 2px solid #000;
-  z-index: 1000; /* S'assure que la pop-up est au-dessus des autres éléments */
-}
+.nav-link{
+  color:#495057;
+  background-color:#fff;
+  border-color:#dee2e6 #dee2e6 #fff}

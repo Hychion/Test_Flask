@@ -5,50 +5,112 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon appli</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    {% block css %}{% endblock %}
+
 </head>
+
 <body>
-    <nav id="navbar">
-        <img src="{{ url_for('static', filename='img/img.png') }}" alt="logo" width="50">
-        <ul id="navbar-items">
-            <li class="navbar-item">
-                <a href="{{ url_for('index') }}">Accueil</a>
-            </li>
 
-             <li class="navbar-item">
-                <a href="{{ url_for('somme_des_chiffres.request_sum_of_didgit') }}">Sommes des chiffres</a>
-            </li>
+    <nav id="navbar" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <img src="{{ url_for('static', filename='img/img.png') }}" alt="logo" width="100" height="50">
 
-            <li class="navbar-item">
-                <a href="{{ url_for('the_good_page.jeu') }}">Nombre mystère</a>
-            </li>
-            <li class="navbar-item">
-                <a href="{{ url_for('pdf_download.upload_pdf') }}">How many word in my pdf</a>
-            </li>
-
-            </li>
-                <li class="navbar-item">
-                    <a href="{{ url_for('statistiques.top_users_view') }}">Statistiques</a>
-            </li>
-
-
-            <li class="navbar-item login-logout">
-                {% if session['user_id'] %}
-                    <a href="{{ url_for('auth_bp.logout') }}">
-                            {{ session['user_id'] }}
-                    </a>
-                {% else %}
-                    <a href="{{ url_for('auth_bp.login') }}">Se connecter</a>
-                {% endif %}
-            </li>
-        </ul>
+       <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">{{ session['user_id'] }}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="{{ url_for('auth_bp.logout') }}">Sign out</a>
+        </li>
+      </ul>
     </nav>
 
-    <div id="container">
-        {% block content %}{% endblock %}
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li data-path="/" class="nav-item">
+
+                <a class="nav-link" href="{{ url_for('index') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg>
+                   <span class="sr-only">(curent)</span>
+                    Accueil
+                </a>
+              </li>
+
+              <li data-path="/sum_didgit" class="nav-item">
+                <a class="nav-link" href="{{ url_for('somme_des_chiffres.request_sum_of_didgit') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                      <polyline points="13 2 13 9 20 9"></polyline>
+                  </svg>
+                  Sommes des chiffres
+                </a>
+              </li>
+
+              <li data-path="/jeu" class="nav-item">
+                <a class="nav-link" href="{{ url_for('the_good_page.jeu') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
+                      <line x1="18" y1="2 0" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                  Nombre mystère
+                </a>
+              </li>
+
+              <li data-path="/upload_pdf" class="nav-item">
+                <a class="nav-link" href="{{ url_for('pdf_download.upload_pdf') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  Word in my pdf
+                </a>
+              </li>
+
+              <li data-path="/top-users" class="nav-item">
+                <a class="nav-link" href="{{ url_for('statistiques.top_users_view') }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                  Statistiques
+                </a>
+              </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Autres</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              </a>
+            </h6>
+              <li class="nav-item" >
+                <a class="nav-link" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  Futur_test
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+            <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <div id="container">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </main>
+
+      </div>
     </div>
 
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
 </body>
 </html>
