@@ -10,12 +10,9 @@
                     <option value="game_sessions">Sessions de Jeu</option>
                     <option value="help_requests">Requetes d'Aide</option>
                 </select>
-                <input type="submit" value="Visualiser">
+                <input class="btn btn-sm btn-outline-primary" type="submit" value="Visualiser">
             </form>
         </div>
-
-        <button class="btn btn-sm btn-outline-secondary">Share</button>
-        <button class="btn btn-sm btn-outline-secondary">Export</button>
     </div>
     <div class="my-4 chartjs-render-monitor" id="myChart" style="display: block">
         {{ graph_html|safe }}
